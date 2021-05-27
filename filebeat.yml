@@ -1,0 +1,31 @@
+#=========================== Filebeat inputs =============================
+
+filebeat.inputs:
+- type: log
+
+  # Change to true to enable this input configuration.
+  enabled: true
+
+  # Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - /home/dbab/scripts/s3-log-cat/*.log
+    #- /var/log/osquery/status.log
+#============================= Filebeat modules ===============================
+
+filebeat.config.modules:
+  reload.period: 30s
+
+#================================ Outputs =====================================
+
+# Configure what output to use when sending the data collected by the beat.
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+  # The Logstash hosts
+  hosts: ["IP:5044"]
+
+#================================ Logging =====================================
+
+# Sets log level. The default log level is info.
+# Available log levels are: error, warning, info, debug
+logging.level: debug
